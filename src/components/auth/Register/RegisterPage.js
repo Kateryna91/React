@@ -18,8 +18,6 @@ const RegisterPage = () => {
     };
 
     const formikRef =useRef();
-
-
  //функція яка викликається під час події он сабміт (умовно відправляє дані на сервер)
     const onSubmitHandler = (values) =>
     {
