@@ -1,14 +1,14 @@
 import classnames from "classnames";
 import PropTypes from "prop-types";
 
-const InputTextField = ({
-    field, // імя інпута
+const InputTextField = ({field, // імя інпута
     label, // текст в лейболі
     value, // поле зі стейта
     error, // поле помилки до нашого поля
     type, // тип інпута
     placeholder, // плейс холдер фоновий текст інпута
     onChange // функція обробник події змін
+    
 }) => {
     console.log("error", error);
     return (

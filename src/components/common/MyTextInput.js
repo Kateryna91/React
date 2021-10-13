@@ -18,6 +18,7 @@ const MyTextInput = ({ label, ...props }) => {
         {meta.error && meta.touched && 
           <span className="text-danger">{meta.error}</span>}
       </div>
+      
     );
   };
 
