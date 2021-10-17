@@ -2,34 +2,33 @@ import React, { useRef } from 'react'
 import classnames from "classnames";
 import InputTextField from '../../common/InputTextField';
 import validationFields from './validation';
-import {Formik, Form} from 'formik';
+import { Formik, Form } from 'formik';
 import MyTextInput from '../../common/MyTextInput';
 import MyPhotoInput from '../../common/MyPhotoInput';
 import http from "../../../http_common";
 
 const RegisterPage = () => {
 
-    const initState ={
+    const initState = {
         email: '',
-        password:'',
+        password: '',
         photo: null,
-        confirmPassword:'',
+        confirmPassword: '',
         fio: '',
     };
 
-    const formikRef =useRef();
- //функція яка викликається під час події он сабміт (умовно відправляє дані на сервер)
-    const onSubmitHandler = (values) =>
-    {
+    const formikRef = useRef();
+    //функція яка викликається під час події он сабміт (умовно відправляє дані на сервер)
+    const onSubmitHandler = (values) => {
+        console.log("daff");
         const formData = new FormData();
         Object.entries(values).forEach(([key, value]) => formData.append(key, value));
-
         http.post("api/account/register", formData,
-        {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        });
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
 
         // console.log("Server submit data", values);
 
@@ -44,57 +43,55 @@ const RegisterPage = () => {
         // ));
     }
 
-//ретурнимо нашу сторінку 
-return (
-    <div className="row">
-        <h1 className="text-center">Реєстрація</h1>
-        <div className="offset-md-3 col-md-6">
-            <Formik
-                innerRef={formikRef}
-                initialValues={initState}
-                onSubmit={onSubmitHandler}
-                validationSchema={validationFields()}>
-                <Form>
-                    <MyTextInput
-                        label="ПІБ"
-                        name="fio"
-                        id="fio"
-                        type="text"
-                    />
+    //ретурнимо нашу сторінку 
+    return (
+        <div className="row">
+            <h1 className="text-center">Реєстрація</h1>
+            <div className="offset-md-3 col-md-6">
+                <Formik
+                    innerRef={formikRef}
+                    initialValues={initState}
+                    onSubmit={onSubmitHandler}
+                    validationSchema={validationFields()}>
+                    <Form>
+                        <MyTextInput
+                            label="ПІБ"
+                            name="fio"
+                            id="fio"
+                            type="text"
+                        />
 
-                    <MyTextInput
-                        label="Електронна пошта"
-                        name="email"
-                        id="email"
-                        type="text"
-                    />
-                   <MyPhotoInput
+                        <MyTextInput
+                            label="Електронна пошта"
+                            name="email"
+                            id="email"
+                            type="text"
+                        />
+                        <MyPhotoInput
                             myField="photo"
-                            name="photo"
-                            id="photo"
                             formikRef={formikRef}
                         />
 
-                    <MyTextInput
-                        label="Пароль"
-                        name="password"
-                        id="password"
-                        type="password"
-                    />
-                    <MyTextInput
-                        label="Повтор пароль"
-                        name="confirmPassword"
-                        id="confirmPassword"
-                        type="password"
-                    />
+                        <MyTextInput
+                            label="Пароль"
+                            name="password"
+                            id="password"
+                            type="password"
+                        />
+                        <MyTextInput
+                            label="Повтор пароль"
+                            name="confirmPassword"
+                            id="confirmPassword"
+                            type="password"
+                        />
 
 
-                    <button type="submit" className="btn btn-success">Реєстрація</button>
-                </Form>
-            </Formik>
+                        <button type="submit" className="btn btn-success">Реєстрація</button>
+                    </Form>
+                </Formik>
+            </div>
         </div>
-    </div>
-);
+    )
 }
 
 export default RegisterPage;
@@ -138,7 +135,7 @@ export default RegisterPage;
 // //функція яка викликається під час відправки форми
 //     onSubmitHandler = (e) => {
 //         e.preventDefault();
-        
+
 
     //     var errors = validatonFields(this.state); //викликаємо валідатор і передаємо стейт from './Validation'
     //     const isValid = Object.keys(errors).length === 0;   // створюємо змінну isValid і приводимо її до буля перевіркою чи є в нашому масиві помилки
@@ -178,7 +175,7 @@ export default RegisterPage;
 //             if (file.type.match(/^image\//)) { // перевіряємо чи тип файлу фото
 //                 const reader = new FileReader(); // створюємо змінну
 //                 reader.onload = function () { // після загрузки файлу виконуємо наступний код....
-                    
+
 //                     photo = reader.result;
 //                     console.log(photo);
 //                 }
@@ -206,7 +203,7 @@ export default RegisterPage;
 //                 <h1 className="text-center">Registation</h1>
 //                 <div className="offset-md-3 col-md-6">
 //                     <form onSubmit={this.onSubmitHandler}>
-                        
+
 //                         <InputTextField
 //                             field="fio"
 //                             label="FIO"
@@ -232,7 +229,7 @@ export default RegisterPage;
 //                             type="number"
 //                             placeholder="+38(XXX)-XXX-XX-XX"
 //                          />
-                        
+
 //                         <InputTextField
 //                             field="password"
 //                             label="Password"
@@ -253,7 +250,7 @@ export default RegisterPage;
 
 //                             <div className="mb-3">
 //                             <img src={this.state.BasePhoto} id="PhotoBase" name="PhotoBase" alt="Foto"></img>
-                            
+
 //                             <input type="file"
 //                                 className={classnames("form-control",
 //                                     { "is-invalid": errors.photo },

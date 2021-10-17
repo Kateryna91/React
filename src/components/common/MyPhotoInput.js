@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useField } from 'formik';
 
-const MyPhotoInput = ({ myField, formikRef, ...props }) => {
+const MyPhotoInput = ({ myField, formikRef}) => {
 
 
     // фото яке показується по замовчувані
@@ -9,7 +9,6 @@ const MyPhotoInput = ({ myField, formikRef, ...props }) => {
     const [photo, setPhoto] = useState("https://bytes.ua/wp-content/uploads/2017/08/no-image.png");
     // ми сказали шо у поле ерор Буде закидать через сетерор
     const [error, setError] = useState("");
-    const [field, meta] = useField(props);
 
 
     // функція яка викликається при події он чандж на інпуті
@@ -29,6 +28,7 @@ const MyPhotoInput = ({ myField, formikRef, ...props }) => {
             setError("Оберіть файл з типом фото")// якщо розмір файлу неправильний наказуємо обрати фото меншого розміру
             return;//виходимо з функції selectImage
         }
+        console.log("aff");
         setPhoto(URL.createObjectURL(files[0])); //це функція яку ми самі оголосили яка показує фото по замовчувані ми туди присвоюєм наше фото
         formikRef.current.setFieldValue(myField, files[0]); // тут передаємо фото у формік Myfield це назва зміної зі стейта ми отримало фого з регістерпейдж
         setError("") // в помилки присвоюєм пусту строку щоб зникли всі помилки
@@ -49,8 +49,6 @@ const MyPhotoInput = ({ myField, formikRef, ...props }) => {
                  />
 
         {error && <span className="text-danger">{error}</span>}
-
-        {meta.error && meta.touched && <span className="text-danger">{meta.error}</span>}
             
         </div>
     );
